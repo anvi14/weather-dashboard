@@ -1,49 +1,39 @@
-import './App.css';
+import { useState } from 'react'
+import './App.css'
 
 function App() {
+  const [city, setCity] = useState('')
+
+  function handleSearch(event) {
+    event.preventDefault()
+    console.log(city)
+  }
+
+
   return (
     <main className="app">
-      <div className="background-glow glow-1"></div>
-      <div className="background-glow glow-2"></div>
+    <section className="weather-card">
+      <p className="tag">Weather Dashboard</p>
+      <h1>Beautiful weather, clearly presented.</h1>
 
-      <section className="weather-card">
-        <div className="hero">
-          <p className="tag">Weather Dashboard</p>
+      <form className="search-form" onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Search a city..."
+          value={city}
+          onChange={(event) => setCity(event.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
 
-          <h1>
-            Beautiful weather,
-            <br />
-            clearly presented.
-          </h1>
-
-          <p className="description">
-            A clean modern dashboard for checking weather around the world.
-          </p>
-        </div>
-
-        <form className="search-form">
-          <input
-            type="text"
-            placeholder="Search a city..."
-          />
-
-          <button type="submit">
-            Search
-          </button>
-        </form>
-
-        <div className="weather-preview">
-          <p className="city">San Diego</p>
-
-          <h2>72°</h2>
-
-          <p className="condition">
-            Partly Cloudy · Daytime
-          </p>
-        </div>
-      </section>
-    </main>
-  );
+      <div className="weather-preview">
+        <p>San Diego</p>
+        <h2>72°</h2>
+        <p>Partly Cloudy · Daytime</p>
+      </div>
+    </section>
+  </main>
+  )
 }
 
-export default App;
+export default App
